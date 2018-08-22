@@ -1,0 +1,50 @@
+# depslib dependency file v1.0
+1534970169 source:f:\fifi\programowanie\pacman\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<cstdlib>
+	<conio.h>
+	"Board.h"
+	"PacMan.h"
+
+1534969481 source:f:\fifi\programowanie\pacman\src\board.cpp
+	"Board.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+
+1534967965 f:\fifi\programowanie\pacman\include\board.h
+	<iostream>
+
+1534924382 source:c:\codeblocks\wypociny\pacman\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"Board.h"
+
+1534926278 c:\codeblocks\wypociny\pacman\include\board.h
+	<iostream>
+
+1534924382 source:c:\codeblocks\wypociny\pacman\src\board.cpp
+	"Board.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+
+1534926948 source:c:\codeblocks\wypociny\pacman\src\pacman.cpp
+	"PacMan.h"
+	<iostream>
+
+1534926696 c:\codeblocks\wypociny\pacman\include\pacman.h
+	<iostream>
+	"Board.h"
+
+1534963465 source:f:\fifi\programowanie\pacman\src\pacman.cpp
+	"PacMan.h"
+	<iostream>
+
+1534963929 f:\fifi\programowanie\pacman\include\pacman.h
+	<iostream>
+	"Board.h"
+
