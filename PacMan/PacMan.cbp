@@ -34,9 +34,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Berry.h" />
 		<Unit filename="include/Board.h" />
 		<Unit filename="include/PacMan.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Berry.cpp" />
 		<Unit filename="src/Board.cpp" />
 		<Unit filename="src/PacMan.cpp" />
 		<Extensions>

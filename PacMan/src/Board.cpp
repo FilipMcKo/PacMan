@@ -66,6 +66,28 @@ char Board::getSign(int positionX, int positionY)
    return matrix[positionX][positionY];
 }
 
+void Board::gameOver()
+{
+    for (int i=boardSize/2-5; i<boardSize/2+6; i++)
+        setPosition((boardSize/2+1),i,' ');
+    for (int i=boardSize/2-5; i<boardSize/2+6; i++)
+        setPosition((boardSize/2-1),i,' ');
+
+    setPosition((boardSize/2),boardSize/2-5,' ');
+    setPosition((boardSize/2),boardSize/2-4,'G');
+    setPosition((boardSize/2),boardSize/2-3,'A');
+    setPosition((boardSize/2),boardSize/2-2,'M');
+    setPosition((boardSize/2),boardSize/2-1,'E');
+    setPosition((boardSize/2),boardSize/2,' ');
+    setPosition((boardSize/2),boardSize/2+1,'O');
+    setPosition((boardSize/2),boardSize/2+2,'V');
+    setPosition((boardSize/2),boardSize/2+3,'E');
+    setPosition((boardSize/2),boardSize/2+4,'R');
+    setPosition((boardSize/2),boardSize/2+5,' ');
+
+
+}
+
 int Board::getSize()
 {
     return boardSize;

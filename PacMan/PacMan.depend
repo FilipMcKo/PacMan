@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1534970169 source:f:\fifi\programowanie\pacman\main.cpp
+1535137865 source:f:\fifi\programowanie\pacman\main.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
@@ -7,14 +7,15 @@
 	<conio.h>
 	"Board.h"
 	"PacMan.h"
+	"Berry.h"
 
-1534969481 source:f:\fifi\programowanie\pacman\src\board.cpp
+1535137526 source:f:\fifi\programowanie\pacman\src\board.cpp
 	"Board.h"
 	<iostream>
 	<cstdlib>
 	<ctime>
 
-1534967965 f:\fifi\programowanie\pacman\include\board.h
+1535133024 f:\fifi\programowanie\pacman\include\board.h
 	<iostream>
 
 1534924382 source:c:\codeblocks\wypociny\pacman\main.cpp
@@ -40,11 +41,60 @@
 	<iostream>
 	"Board.h"
 
-1534963465 source:f:\fifi\programowanie\pacman\src\pacman.cpp
+1535132199 source:f:\fifi\programowanie\pacman\src\pacman.cpp
 	"PacMan.h"
 	<iostream>
 
-1534963929 f:\fifi\programowanie\pacman\include\pacman.h
+1535132191 f:\fifi\programowanie\pacman\include\pacman.h
+	<iostream>
+	"Board.h"
+
+1535117650 source:c:\codeblocks\wypociny\pacman-master\pacman-master\pacman\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<cstdlib>
+	<conio.h>
+	"Board.h"
+	"PacMan.h"
+	"Berry.h"
+
+1535117516 c:\codeblocks\wypociny\pacman-master\pacman-master\pacman\include\board.h
+	<iostream>
+
+1535116586 c:\codeblocks\wypociny\pacman-master\pacman-master\pacman\include\pacman.h
+	<iostream>
+	"Board.h"
+
+1535116586 source:c:\codeblocks\wypociny\pacman-master\pacman-master\pacman\src\board.cpp
+	"Board.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+
+1535116586 source:c:\codeblocks\wypociny\pacman-master\pacman-master\pacman\src\pacman.cpp
+	"PacMan.h"
+	<iostream>
+
+1535118012 source:c:\codeblocks\wypociny\pacman-master\pacman-master\pacman\src\berry.cpp
+	"Berry.h"
+	"Board.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
+
+1535118489 c:\codeblocks\wypociny\pacman-master\pacman-master\pacman\include\berry.h
+	<iostream>
+	"Board.h"
+
+1535131930 source:f:\fifi\programowanie\pacman\src\berry.cpp
+	"Berry.h"
+	"Board.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
+
+1535122089 f:\fifi\programowanie\pacman\include\berry.h
 	<iostream>
 	"Board.h"
 
