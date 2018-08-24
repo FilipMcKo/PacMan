@@ -27,9 +27,13 @@ void PacMan::moveLeft()
 {
     this->locationY--;
 }
-void PacMan::eatBerrie()
+void PacMan::eatBerry()
 {
     this->eatenBerries++;
+}
+int PacMan::getEatenBerries()
+{
+    return eatenBerries;
 }
 
 int PacMan::getLocationX()

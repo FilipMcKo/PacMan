@@ -12,12 +12,14 @@ class Board
     short random;
     public:
         char originalSign;
-        Board();
-        Board(int);
-        void showBoard();
-        void setPosition(int, int, char);
+        char originalSignUnderBerry;
         char getSign(int, int);
         int getSize();
+        void showBoard();
+        void setPosition(int, int, char);
+        void gameOver();
+        Board();
+        Board(int);
         ~Board();
         friend class PacMan;
 };

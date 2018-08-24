@@ -15,7 +15,8 @@ class PacMan
         void moveDown();
         void moveRight();
         void moveLeft();
-        void eatBerrie();
+        void eatBerry();
+        int getEatenBerries();
         int getLocationX();
         int getLocationY();
         char getPacManInstance();
