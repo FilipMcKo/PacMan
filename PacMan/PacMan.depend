@@ -1,21 +1,24 @@
 # depslib dependency file v1.0
-1535137865 source:f:\fifi\programowanie\pacman\main.cpp
+1535319006 source:f:\fifi\programowanie\pacman\main.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
 	<cstdlib>
 	<conio.h>
+	<windows.h>
 	"Board.h"
 	"PacMan.h"
 	"Berry.h"
+	"Timer.h"
 
-1535137526 source:f:\fifi\programowanie\pacman\src\board.cpp
+1535318382 source:f:\fifi\programowanie\pacman\src\board.cpp
 	"Board.h"
 	<iostream>
 	<cstdlib>
 	<ctime>
+	<windows.h>
 
-1535133024 f:\fifi\programowanie\pacman\include\board.h
+1535144274 f:\fifi\programowanie\pacman\include\board.h
 	<iostream>
 
 1534924382 source:c:\codeblocks\wypociny\pacman\main.cpp
@@ -41,11 +44,11 @@
 	<iostream>
 	"Board.h"
 
-1535132199 source:f:\fifi\programowanie\pacman\src\pacman.cpp
+1535317809 source:f:\fifi\programowanie\pacman\src\pacman.cpp
 	"PacMan.h"
 	<iostream>
 
-1535132191 f:\fifi\programowanie\pacman\include\pacman.h
+1535312699 f:\fifi\programowanie\pacman\include\pacman.h
 	<iostream>
 	"Board.h"
 
@@ -87,7 +90,7 @@
 	<iostream>
 	"Board.h"
 
-1535131930 source:f:\fifi\programowanie\pacman\src\berry.cpp
+1535311653 source:f:\fifi\programowanie\pacman\src\berry.cpp
 	"Berry.h"
 	"Board.h"
 	<iostream>
@@ -97,4 +100,11 @@
 1535122089 f:\fifi\programowanie\pacman\include\berry.h
 	<iostream>
 	"Board.h"
+
+1535311141 f:\fifi\programowanie\pacman\include\timer.h
+	<iostream>
+
+1535311564 source:f:\fifi\programowanie\pacman\src\timer.cpp
+	"Timer.h"
+	<iostream>
 

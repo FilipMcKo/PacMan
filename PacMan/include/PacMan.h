@@ -11,11 +11,14 @@ class PacMan
     char pacManInstance;
     Board board;
     public:
+        int totalTime, remainingTime;
         void moveUp();
         void moveDown();
         void moveRight();
         void moveLeft();
         void eatBerry();
+        void resetBerryCount();
+        void resetPacMan();
         int getEatenBerries();
         int getLocationX();
         int getLocationY();

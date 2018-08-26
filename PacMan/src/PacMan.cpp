@@ -9,6 +9,8 @@ PacMan::PacMan()
     this->locationY=1;
     this->eatenBerries=0;
     this->pacManInstance=176;
+    this->totalTime=20;
+    this->remainingTime=1;
 }
 
 void PacMan::moveUp()
@@ -30,6 +32,15 @@ void PacMan::moveLeft()
 void PacMan::eatBerry()
 {
     this->eatenBerries++;
+    if (eatenBerries==10)
+        this->pacManInstance=177;
+    if (eatenBerries==11)
+        this->pacManInstance=178;
+}
+
+void PacMan::resetBerryCount()
+{
+    this->eatenBerries=0;
 }
 int PacMan::getEatenBerries()
 {
@@ -60,6 +71,16 @@ int PacMan::getPreviousPositionX()
 int PacMan::getPreviousPositionY()
 {
     return this->previousPositionY;
+}
+
+void PacMan::resetPacMan()
+{
+    this->locationX=1;
+    this->locationY=1;
+    this->eatenBerries=0;
+    this->pacManInstance=176;
+    this->totalTime=20;
+    this->remainingTime=1;
 }
 
 PacMan::~PacMan()

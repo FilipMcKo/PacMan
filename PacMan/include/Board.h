@@ -15,9 +15,10 @@ class Board
         char originalSignUnderBerry;
         char getSign(int, int);
         int getSize();
-        void showBoard();
+        void showBoard(int, int);
         void setPosition(int, int, char);
         void gameOver();
+        void resetTheBoard();
         Board();
         Board(int);
         ~Board();
