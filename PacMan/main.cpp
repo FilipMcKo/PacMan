@@ -3,9 +3,11 @@
 #include <ctime>
 #include <cstdlib>
 #include <conio.h>
+#include <windows.h>
 #include "Board.h"
 #include "PacMan.h"
 #include "Berry.h"
+#include "Timer.h"
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -15,41 +17,89 @@
 using namespace std;
 
 
-void movePacMan(int, PacMan *, Board *, Berry *);
+void singlePlayer(int, PacMan *, Board *, Berry *);
 void startPosition();
 void gameOver(Board *, PacMan *);
 void eatBerry(Board *, PacMan *, Berry *);
 int c=0;
-char horizontal=205, vertical=186;
-bool breakTheLoop=1;
+char horizontal=205, vertical=186, playAgainChoice;
+bool breakTheLoop=1, playAgain=1;
+clock_t start;
 
 int main()
 {
 
-
-    Board firstBoard(25);
+    Board firstBoard(17);
     firstBoard.originalSign=firstBoard.getSign(1,1);
     PacMan pacMan;
     Berry berry(&firstBoard);
     firstBoard.setPosition(pacMan.getLocationX(),pacMan.getLocationY(),pacMan.getPacManInstance());
-    firstBoard.showBoard();
 
-    while(breakTheLoop)
-    {
-        cout<<"Eaten berries: "<<pacMan.getEatenBerries();
-        c=getch();
-        movePacMan(c, &pacMan, &firstBoard, &berry);
-        system("cls");
-        firstBoard.showBoard();
-     }
+    cout<<"Press any key to start";
     getch();
+    system("cls");
 
 
+    while(playAgain)
+    {
+        start=clock();
+        firstBoard.showBoard(berry.getPositionX(),berry.getPositionY());
+        while(breakTheLoop&&pacMan.remainingTime)
+        {
+            pacMan.remainingTime=pacMan.totalTime-(clock()-start)/CLOCKS_PER_SEC;
+            SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 7 );
+            cout<<"Eaten berries:  "<<pacMan.getEatenBerries()<<endl;
+            cout<<"Remaining time: "<<pacMan.remainingTime;
+            c=getch();
+            singlePlayer(c, &pacMan, &firstBoard, &berry);
+            system("cls");
+            firstBoard.showBoard(berry.getPositionX(),berry.getPositionY());
+            if (pacMan.remainingTime==0)
+            {
+                cout<<"You are out of time!\n";
+                cout<<"Your score is: "<<pacMan.getEatenBerries()<<endl<<endl;
+                Sleep(3000);
+            }
+        }
+
+        while(1)
+        {
+            cout<<"Do you want ot play again? [Y]/[N]\n";
+            playAgainChoice=getch();
+            if (playAgainChoice=='y'||playAgainChoice=='Y')
+            {
+                system("cls");
+                pacMan.resetPacMan();
+                firstBoard.resetTheBoard();
+                berry.setPosition(&firstBoard);
+                breakTheLoop=1;
+                break;
+            }
+            else if (playAgainChoice=='n'||playAgainChoice=='N')
+            {
+                playAgain=0;
+                break;
+            }
+            else
+            {
+                system("cls");
+                firstBoard.showBoard(berry.getPositionX(),berry.getPositionY());
+                if (pacMan.remainingTime==0)
+                {
+                    cout<<"You are out of time!\n";
+                    cout<<"Your score is: "<<pacMan.getEatenBerries()<<endl<<endl;
+                }
+            }
+        }
+
+
+
+    }
 
     return 0;
 }
 
-void movePacMan(int whatArrow, PacMan *pacMan, Board *board, Berry *berry)
+void singlePlayer(int whatArrow, PacMan *pacMan, Board *board, Berry *berry)
 {
 
     pacMan->setPreviousPosition(pacMan->getLocationX(),pacMan->getLocationY());
@@ -121,5 +171,6 @@ void eatBerry(Board *board, PacMan *pacMan, Berry *berry)
         pacMan->eatBerry();
         board->originalSign=board->originalSignUnderBerry;
         berry->setPosition(board);
+        pacMan->totalTime+=3;
     }
 }

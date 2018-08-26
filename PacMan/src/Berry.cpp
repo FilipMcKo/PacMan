@@ -15,7 +15,6 @@ Berry::Berry(Board *board)
     positionY=1+rand()%(board->getSize()-2);
     board->originalSignUnderBerry=board->getSign(positionX,positionY);
     board->setPosition(positionX, positionY, berryInstance);
-
 }
 
 Berry::~Berry()
