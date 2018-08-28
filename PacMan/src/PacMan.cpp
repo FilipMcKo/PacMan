@@ -5,14 +5,15 @@ using namespace std;
 
 
 
-PacMan::PacMan(int pacManInstance)
+PacMan::PacMan(int pacManInstance, string pacManName, int locationX, int locationY)
 {
-    this->locationX=1;
-    this->locationY=1;
+    this->locationX=locationX;
+    this->locationY=locationY;
     this->eatenBerries=0;
     this->pacManInstance=pacManInstance;
     this->totalTime=20;
     this->remainingTime=1;
+    this->pacManName=pacManName;
 }
 
 void PacMan::moveUp()
@@ -34,10 +35,6 @@ void PacMan::moveLeft()
 void PacMan::eatBerry()
 {
     this->eatenBerries++;
-    if (eatenBerries==10)
-        this->pacManInstance=177;
-    if (eatenBerries==11)
-        this->pacManInstance=178;
 }
 
 void PacMan::resetBerryCount()
@@ -80,9 +77,14 @@ void PacMan::resetPacMan()
     this->locationX=1;
     this->locationY=1;
     this->eatenBerries=0;
-    this->pacManInstance=176;
+    this->pacManInstance=257;
     this->totalTime=20;
     this->remainingTime=1;
+}
+
+string PacMan::getPacManName()
+{
+return this->pacManName;
 }
 
 PacMan::~PacMan()

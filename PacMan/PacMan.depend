@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1535319006 source:f:\fifi\programowanie\pacman\main.cpp
+1535495438 source:f:\fifi\programowanie\pacman\main.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
@@ -9,16 +9,15 @@
 	"Board.h"
 	"PacMan.h"
 	"Berry.h"
-	"Timer.h"
 
-1535318382 source:f:\fifi\programowanie\pacman\src\board.cpp
+1535484987 source:f:\fifi\programowanie\pacman\src\board.cpp
 	"Board.h"
 	<iostream>
 	<cstdlib>
 	<ctime>
 	<windows.h>
 
-1535144274 f:\fifi\programowanie\pacman\include\board.h
+1535490569 f:\fifi\programowanie\pacman\include\board.h
 	<iostream>
 
 1534924382 source:c:\codeblocks\wypociny\pacman\main.cpp
@@ -44,11 +43,11 @@
 	<iostream>
 	"Board.h"
 
-1535317809 source:f:\fifi\programowanie\pacman\src\pacman.cpp
+1535495438 source:f:\fifi\programowanie\pacman\src\pacman.cpp
 	"PacMan.h"
 	<iostream>
 
-1535312699 f:\fifi\programowanie\pacman\include\pacman.h
+1535484987 f:\fifi\programowanie\pacman\include\pacman.h
 	<iostream>
 	"Board.h"
 
@@ -90,14 +89,14 @@
 	<iostream>
 	"Board.h"
 
-1535311653 source:f:\fifi\programowanie\pacman\src\berry.cpp
+1535432510 source:f:\fifi\programowanie\pacman\src\berry.cpp
 	"Berry.h"
 	"Board.h"
 	<iostream>
 	<ctime>
 	<cstdlib>
 
-1535122089 f:\fifi\programowanie\pacman\include\berry.h
+1535432510 f:\fifi\programowanie\pacman\include\berry.h
 	<iostream>
 	"Board.h"
 
@@ -149,4 +148,44 @@
 1535456330 source:c:\codeblocks\wypociny\pacman-master\pacman\src\pacman.cpp
 	"PacMan.h"
 	<iostream>
+
+1535432510 source:f:\fifi\programowanie\pacman-pacman-v1.2\pacman\src\berry.cpp
+	"Berry.h"
+	"Board.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
+
+1535432510 f:\fifi\programowanie\pacman-pacman-v1.2\pacman\include\berry.h
+	<iostream>
+	"Board.h"
+
+1535432510 f:\fifi\programowanie\pacman-pacman-v1.2\pacman\include\board.h
+	<iostream>
+
+1535432510 source:f:\fifi\programowanie\pacman-pacman-v1.2\pacman\src\board.cpp
+	"Board.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<windows.h>
+
+1535432510 source:f:\fifi\programowanie\pacman-pacman-v1.2\pacman\src\pacman.cpp
+	"PacMan.h"
+	<iostream>
+
+1535432510 f:\fifi\programowanie\pacman-pacman-v1.2\pacman\include\pacman.h
+	<iostream>
+	"Board.h"
+
+1535479534 source:f:\fifi\programowanie\pacman-pacman-v1.2\pacman\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<cstdlib>
+	<conio.h>
+	<windows.h>
+	"Board.h"
+	"PacMan.h"
+	"Berry.h"
 
