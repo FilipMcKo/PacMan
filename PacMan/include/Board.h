@@ -10,14 +10,16 @@ using namespace std;
 class Board
 {
     int boardSize, positionX, positionY;
-    char **matrix, berryInstance=271, pacmanInstance1=257,pacmanInstance2=258;
+    char **matrix;
+    char berryInstance=271, pacmanInstance1=257,pacmanInstance2=258;
     short random;
     public:
-        char originalSign;
+        char originalSign1;
+        char originalSign2;
         char originalSignUnderBerry;
         char getSign(int, int);
         int getSize();
-        void showBoard(int, int);
+        void showBoard();
         void setPosition(int, int, char);
         void gameOver();
         void resetTheBoard();

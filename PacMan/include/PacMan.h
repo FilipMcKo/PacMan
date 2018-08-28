@@ -11,6 +11,7 @@ class PacMan
 {
     int locationX, locationY, eatenBerries, previousPositionX, previousPositionY;
     char pacManInstance;
+    string pacManName;
     Board board;
     public:
         int totalTime, remainingTime;
@@ -28,7 +29,8 @@ class PacMan
         char getPacManInstance();
         int getPreviousPositionX();
         int getPreviousPositionY();
-        PacMan(int);
+        string getPacManName();
+        PacMan(int,string, int, int);
         ~PacMan();
         friend class Board;
 };
