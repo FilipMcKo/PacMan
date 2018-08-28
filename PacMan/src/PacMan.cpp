@@ -3,12 +3,14 @@
 
 using namespace std;
 
-PacMan::PacMan()
+
+
+PacMan::PacMan(int pacManInstance)
 {
     this->locationX=1;
     this->locationY=1;
     this->eatenBerries=0;
-    this->pacManInstance=176;
+    this->pacManInstance=pacManInstance;
     this->totalTime=20;
     this->remainingTime=1;
 }

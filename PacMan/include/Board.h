@@ -2,13 +2,15 @@
 #define BOARD_H
 #include <iostream>
 
+
+
 using namespace std;
 
 
 class Board
 {
     int boardSize, positionX, positionY;
-    char **matrix;
+    char **matrix, berryInstance=271, pacmanInstance1=257,pacmanInstance2=258;
     short random;
     public:
         char originalSign;
@@ -22,7 +24,7 @@ class Board
         Board();
         Board(int);
         ~Board();
-        friend class PacMan;
+        //friend class PacMan;
 };
 
 #endif // BOARD_H
