@@ -50,37 +50,64 @@ Board::Board(int boardSize)
 
 void Board::showBoard(int line1, int column1)
 {
-
-    for (int i=0; i<line1; i++)
+    for (int i=0; i<boardSize; i++)
     {
-        for (int j=0; j<this->boardSize; j++)
+        for (int j=0; j<boardSize; j++)
         {
-            SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 11 );
-            cout<<matrix[i][j];
+            if (matrix[i][j]==berryInstance)
+            {
+                SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 14 );
+                cout<<matrix[i][j];
+                SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 7 );
+            }
+            else if (matrix[i][j]==pacmanInstance1)
+            {
+                SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 12 );
+                cout<<matrix[i][j];
+                SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 7 );
+            }
+             else if (matrix[i][j]==pacmanInstance2)
+            {
+                SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 13 );
+                cout<<matrix[i][j];
+                SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 7 );
+            }
+            else
+                cout<<matrix[i][j];
         }
         cout<<endl;
     }
+    /*
+        for (int i=0; i<line1; i++)
+        {
+            for (int j=0; j<this->boardSize; j++)
+            {
+                SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 11 );
+                cout<<matrix[i][j];
+            }
+            cout<<endl;
+        }
 
-    for (int j=0; j<column1; j++)
-        cout<<matrix[line1][j];
+        for (int j=0; j<column1; j++)
+            cout<<matrix[line1][j];
 
-    SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 14 );
-    cout<<matrix[line1][column1];
+        SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 14 );
+        cout<<matrix[line1][column1];
 
-    for (int j=column1+1; j<this->boardSize; j++)
-    {
-        SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 11 );
-        cout<<matrix[line1][j];
-    }
-    cout<<endl;
-
-    for (int i=line1+1; i<this->boardSize; i++)
-    {
-        for (int j=0; j<boardSize; j++)
-            cout<<matrix[i][j];
-
+        for (int j=column1+1; j<this->boardSize; j++)
+        {
+            SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 11 );
+            cout<<matrix[line1][j];
+        }
         cout<<endl;
-    }
+
+        for (int i=line1+1; i<this->boardSize; i++)
+        {
+            for (int j=0; j<boardSize; j++)
+                cout<<matrix[i][j];
+
+            cout<<endl;
+        }*/
 }
 
 void Board::setPosition(int positionX, int positionY, char berrieOrPacMan)

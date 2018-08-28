@@ -108,3 +108,45 @@
 	"Timer.h"
 	<iostream>
 
+1535456288 source:c:\codeblocks\wypociny\pacman-master\pacman\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<cstdlib>
+	<conio.h>
+	<windows.h>
+	"Board.h"
+	"PacMan.h"
+	"Berry.h"
+
+1535460865 c:\codeblocks\wypociny\pacman-master\pacman\include\board.h
+	<iostream>
+	"PacMan.h"
+	"Berry.h"
+
+1535460835 c:\codeblocks\wypociny\pacman-master\pacman\include\pacman.h
+	<iostream>
+	"Board.h"
+
+1535315877 c:\codeblocks\wypociny\pacman-master\pacman\include\berry.h
+	<iostream>
+	"Board.h"
+
+1535456166 source:c:\codeblocks\wypociny\pacman-master\pacman\src\berry.cpp
+	"Berry.h"
+	"Board.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
+
+1535456278 source:c:\codeblocks\wypociny\pacman-master\pacman\src\board.cpp
+	"Board.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<windows.h>
+
+1535456330 source:c:\codeblocks\wypociny\pacman-master\pacman\src\pacman.cpp
+	"PacMan.h"
+	<iostream>
+

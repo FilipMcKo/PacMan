@@ -9,7 +9,7 @@ using namespace std;
 
 Berry::Berry(Board *board)
 {
-    berryInstance='O';
+    berryInstance=271;
     srand(time(0));
     positionX=1+rand()%(board->getSize()-2);
     positionY=1+rand()%(board->getSize()-2);

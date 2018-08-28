@@ -5,6 +5,8 @@
 
 using namespace std;
 
+
+
 class PacMan
 {
     int locationX, locationY, eatenBerries, previousPositionX, previousPositionY;
@@ -19,15 +21,16 @@ class PacMan
         void eatBerry();
         void resetBerryCount();
         void resetPacMan();
+        void setPreviousPosition(int, int);
         int getEatenBerries();
         int getLocationX();
         int getLocationY();
         char getPacManInstance();
-        void setPreviousPosition(int, int);
         int getPreviousPositionX();
         int getPreviousPositionY();
-        PacMan();
+        PacMan(int);
         ~PacMan();
+        friend class Board;
 };
 
 #endif // PACMAN_H

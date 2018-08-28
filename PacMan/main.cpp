@@ -7,7 +7,6 @@
 #include "Board.h"
 #include "PacMan.h"
 #include "Berry.h"
-#include "Timer.h"
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -31,7 +30,7 @@ int main()
 
     Board firstBoard(17);
     firstBoard.originalSign=firstBoard.getSign(1,1);
-    PacMan pacMan;
+    PacMan pacMan(257);
     Berry berry(&firstBoard);
     firstBoard.setPosition(pacMan.getLocationX(),pacMan.getLocationY(),pacMan.getPacManInstance());
 
