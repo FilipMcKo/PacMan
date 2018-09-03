@@ -27,8 +27,10 @@ void startPosition();
 void gameOver(Board *, PacMan *);
 void eatBerry(Board *, PacMan *, Berry *);
 void showMenu();
+bool unplayablePositionOfPacMan(Board *, PacMan*);
+bool playablePositionOfBerry(Board *, Berry *);
 
-const int boardSize=18;
+const int boardSize=15;
 int movementDirection1=0, menu1=33, menu2=7, menu3=7, menu4=7, menuInc=0, menuConfirm=1, menuScroll=0;
 const char horizontal=205, vertical=186, w=119, s=115, a=97, d=100;
 char playAgainChoice, movementDirection2=0;
@@ -38,6 +40,29 @@ clock_t start;
 
 int main()
 {
+    Board testBoard(15);
+    testBoard.setPosition(1,5,horizontal);
+    testBoard.setPosition(1,6,horizontal);
+    testBoard.setPosition(1,8,vertical);
+    testBoard.setPosition(1,10,horizontal);
+    testBoard.setPosition(2,4,vertical);
+    testBoard.setPosition(2,7,vertical);
+    testBoard.setPosition(2,8,vertical);
+    testBoard.setPosition(2,10,vertical);
+     testBoard.setPosition(1,10,vertical);
+    testBoard.setPosition(3,4,vertical);
+    testBoard.setPosition(3,7,vertical);
+    testBoard.setPosition(3,9,horizontal);
+    testBoard.setPosition(4,5,horizontal);
+    testBoard.setPosition(4,6,horizontal);
+    testBoard.setPosition(5,2,horizontal);
+    testBoard.setPosition(5,3,horizontal);
+    testBoard.setPosition(6,1,vertical);
+    testBoard.setPosition(6,4,vertical);
+    testBoard.setPosition(7,2,horizontal);
+    testBoard.setPosition(7,3,horizontal);
+
+    //testBoard.showBoard();
     while(1)
     {
         breakTheLoop=1;
@@ -76,6 +101,7 @@ int main()
             getch();
             system("cls");
             Board firstBoard(boardSize);
+            firstBoard=testBoard;
             firstBoard.originalSign1=firstBoard.getSign(1,1);
             PacMan pacMan(257, pacManName1, 1, 1);
             Berry berry(&firstBoard);
@@ -104,7 +130,7 @@ int main()
                     {
                         cout<<"You are out of time!\n";
                         cout<<"Your score is: "<<pacMan.getEatenBerries()<<endl<<endl;
-                        Sleep(3000);
+                        Sleep(100);
                     }
                 }
 
@@ -117,6 +143,10 @@ int main()
                         system("cls");
                         pacMan.resetPacMan();
                         firstBoard.resetTheBoard();
+                        while(unplayablePositionOfPacMan(&firstBoard, &pacMan))
+                        {
+                          firstBoard.resetTheBoard();
+                        }
                         berry.setPosition(&firstBoard);
                         breakTheLoop=1;
                         break;
@@ -183,8 +213,9 @@ int main()
 
                     movementDirection1=getch();
                     if (movementDirection1==KEY_UP||movementDirection1==KEY_DOWN||movementDirection1==KEY_LEFT||movementDirection1==KEY_RIGHT)
-                    firstPlayer(movementDirection1, &pacMan1, &firstBoard, &berry);
-                    else secondPlayer(movementDirection1, &pacMan2, &firstBoard, &berry);
+                        firstPlayer(movementDirection1, &pacMan1, &firstBoard, &berry);
+                    else
+                        secondPlayer(movementDirection1, &pacMan2, &firstBoard, &berry);
 
 
                     system("cls");
@@ -210,6 +241,12 @@ int main()
                         system("cls");
                         pacMan1.resetPacMan();
                         pacMan2.resetPacMan();
+                        firstBoard.resetTheBoard();
+                        while(unplayablePositionOfPacMan(&firstBoard, &pacMan1)&&unplayablePositionOfPacMan(&firstBoard, &pacMan1))
+                        {
+                          firstBoard.resetTheBoard();
+                        }
+
                         firstBoard.resetTheBoard();
                         berry.setPosition(&firstBoard);
                         breakTheLoop=1;
@@ -349,19 +386,10 @@ void secondPlayer(int whatLetter, PacMan *pacMan, Board *board, Berry *berry)
 
 void gameOver(Board *board, PacMan *pacMan)
 {
-    if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    if (unplayablePositionOfPacMan(board, pacMan))
     {
-        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
-        {
-            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
-            {
-                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
-                {
-                    board->gameOver();
-                    breakTheLoop=0;
-                }
-            }
-        }
+        breakTheLoop=0;
+        board->gameOver();
     }
 }
 
@@ -440,3 +468,142 @@ void showMenu()
 
 }
 
+
+bool unplayablePositionOfPacMan(Board *board, PacMan *pacMan)
+{
+    //0
+    if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    {
+        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
+        {
+            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
+            {
+                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+    //1
+    else if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    {
+        if ((board->getSign((pacMan->getLocationX()+2),pacMan->getLocationY()))==horizontal)
+        {
+            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
+            {
+                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+
+     //2
+    else if ((board->getSign((pacMan->getLocationX()-2),pacMan->getLocationY()))==horizontal)
+    {
+        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
+        {
+            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
+            {
+                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+
+     //3
+    else if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    {
+        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
+        {
+            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
+            {
+                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+2))==vertical)
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+
+     //4
+    else if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    {
+        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
+        {
+            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-2))==vertical)
+            {
+                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+
+      //5
+    else if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    {
+        if ((board->getSign((pacMan->getLocationX()+2),pacMan->getLocationY()))==horizontal)
+        {
+            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
+            {
+                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+2))==vertical)
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+
+     //6
+    else if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    {
+        if ((board->getSign((pacMan->getLocationX()+2),pacMan->getLocationY()))==horizontal)
+        {
+            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-2))==vertical)
+            {
+                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+
+     //7
+    else if ((board->getSign((pacMan->getLocationX()-2),pacMan->getLocationY()))==horizontal)
+    {
+        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
+        {
+            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
+            {
+                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+2))==vertical)
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+
+    //8
+    else if ((board->getSign((pacMan->getLocationX()-2),pacMan->getLocationY()))==horizontal)
+    {
+        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
+        {
+            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-2))==vertical)
+            {
+                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+
+    else return 0;
+}

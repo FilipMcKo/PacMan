@@ -11,7 +11,7 @@ PacMan::PacMan(int pacManInstance, string pacManName, int locationX, int locatio
     this->locationY=locationY;
     this->eatenBerries=0;
     this->pacManInstance=pacManInstance;
-    this->totalTime=20;
+    this->totalTime=15;
     this->remainingTime=1;
     this->pacManName=pacManName;
 }
@@ -78,7 +78,7 @@ void PacMan::resetPacMan()
     this->locationY=1;
     this->eatenBerries=0;
     this->pacManInstance=257;
-    this->totalTime=20;
+    this->totalTime=15;
     this->remainingTime=1;
 }
 
