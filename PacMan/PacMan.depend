@@ -269,3 +269,43 @@
 	"PacMan.h"
 	"Berry.h"
 
+1536210300 source:d:\programowanie\c++\pacman-pacman-v1.4\pacman\src\berry.cpp
+	"Berry.h"
+	"Board.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
+
+1536210300 d:\programowanie\c++\pacman-pacman-v1.4\pacman\include\berry.h
+	<iostream>
+	"Board.h"
+
+1536210300 d:\programowanie\c++\pacman-pacman-v1.4\pacman\include\board.h
+	<iostream>
+
+1536261477 source:d:\programowanie\c++\pacman-pacman-v1.4\pacman\src\board.cpp
+	"Board.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<windows.h>
+
+1536256544 source:d:\programowanie\c++\pacman-pacman-v1.4\pacman\src\pacman.cpp
+	"PacMan.h"
+	<iostream>
+
+1536210300 d:\programowanie\c++\pacman-pacman-v1.4\pacman\include\pacman.h
+	<iostream>
+	"Board.h"
+
+1536269140 source:d:\programowanie\c++\pacman-pacman-v1.4\pacman\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<cstdlib>
+	<conio.h>
+	<windows.h>
+	"Board.h"
+	"PacMan.h"
+	"Berry.h"
+

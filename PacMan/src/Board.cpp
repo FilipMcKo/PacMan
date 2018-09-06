@@ -86,7 +86,9 @@ void Board::setPosition(int positionX, int positionY, char berrieOrPacMan)
 
 char Board::getSign(int positionX, int positionY)
 {
+    if((positionX>=0)&&(positionY>=0))
     return matrix[positionX][positionY];
+    else return '0';
 }
 
 void Board::gameOver()

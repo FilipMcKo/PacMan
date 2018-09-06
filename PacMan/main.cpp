@@ -28,7 +28,6 @@ void gameOver(Board *, PacMan *);
 void eatBerry(Board *, PacMan *, Berry *);
 void showMenu();
 bool unplayablePositionOfPacMan(Board *, PacMan*);
-bool playablePositionOfBerry(Board *, Berry *);
 
 const int boardSize=15;
 int movementDirection1=0, menu1=33, menu2=7, menu3=7, menu4=7, menuInc=0, menuConfirm=1, menuScroll=0;
@@ -40,26 +39,26 @@ clock_t start;
 
 int main()
 {
-    Board testBoard(7);
-   /* testBoard.setPosition(1,5,horizontal);
+    Board testBoard(17);
+    testBoard.setPosition(1,5,horizontal);
     testBoard.setPosition(1,6,horizontal);
-    testBoard.setPosition(1,8,vertical);
-    testBoard.setPosition(1,10,horizontal);
+    //testBoard.setPosition(1,8,vertical);
+    //testBoard.setPosition(1,10,horizontal);
     testBoard.setPosition(2,4,vertical);
     testBoard.setPosition(2,7,vertical);
-    testBoard.setPosition(2,8,vertical);
-    testBoard.setPosition(2,10,vertical);
+    //testBoard.setPosition(2,8,vertical);
+    //testBoard.setPosition(2,10,vertical);
     testBoard.setPosition(3,4,vertical);
     testBoard.setPosition(3,7,vertical);
-    testBoard.setPosition(3,9,horizontal);
+    //testBoard.setPosition(3,9,horizontal);
     testBoard.setPosition(4,5,horizontal);
     testBoard.setPosition(4,6,horizontal);
-    testBoard.setPosition(5,2,horizontal);
-    testBoard.setPosition(5,3,horizontal);
-    testBoard.setPosition(6,1,vertical);
-    testBoard.setPosition(6,4,vertical);
-    testBoard.setPosition(7,2,horizontal);
-    testBoard.setPosition(7,3,horizontal);*/
+    testBoard.setPosition(9,2,horizontal);
+    testBoard.setPosition(9,3,horizontal);
+    testBoard.setPosition(10,1,vertical);
+    testBoard.setPosition(10,4,vertical);
+    testBoard.setPosition(11,2,horizontal);
+    testBoard.setPosition(11,3,horizontal);
 
     //testBoard.showBoard();
     while(1)
@@ -121,6 +120,8 @@ int main()
                     else
                         cout<<"Remaining time: 0";
 
+
+
                     movementDirection1=getch();
                     firstPlayer(movementDirection1, &pacMan, &firstBoard, &berry);
                     system("cls");
@@ -144,7 +145,7 @@ int main()
                         firstBoard.resetTheBoard();
                         while(unplayablePositionOfPacMan(&firstBoard, &pacMan))
                         {
-                          firstBoard.resetTheBoard();
+                            firstBoard.resetTheBoard();
                         }
                         berry.setPosition(&firstBoard);
                         breakTheLoop=1;
@@ -243,7 +244,7 @@ int main()
                         firstBoard.resetTheBoard();
                         while(unplayablePositionOfPacMan(&firstBoard, &pacMan1)&&unplayablePositionOfPacMan(&firstBoard, &pacMan1))
                         {
-                          firstBoard.resetTheBoard();
+                            firstBoard.resetTheBoard();
                         }
 
                         firstBoard.resetTheBoard();
@@ -379,7 +380,7 @@ void secondPlayer(int whatLetter, PacMan *pacMan, Board *board, Berry *berry)
 
     eatBerry(board, pacMan, berry);
 
-    //gameOver(board, pacMan);
+    gameOver(board, pacMan);
 
     movementDirection2=0;
 }
@@ -389,7 +390,7 @@ void gameOver(Board *board, PacMan *pacMan)
     if (unplayablePositionOfPacMan(board, pacMan))
     {
         breakTheLoop=0;
-        //board->gameOver();
+       // board->gameOver();
     }
 }
 
@@ -471,211 +472,86 @@ void showMenu()
 
 bool unplayablePositionOfPacMan(Board *board, PacMan *pacMan)
 {
+    char m2m1=board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()-1)),
+         m2n= board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()  )),
+         m2p1=board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()+1)),
+         m1m2=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-2)),
+         m1m1=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-1)),
+         m1n= board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()  )),
+         m1p1=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()+1)),
+         m1p2=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()+2)),
+         nm2= board->getSign((pacMan->getLocationX()  ),(pacMan->getLocationY()-2)),
+         nm1= board->getSign((pacMan->getLocationX()  ),(pacMan->getLocationY()-1)),
+         np1= board->getSign((pacMan->getLocationX()  ),(pacMan->getLocationY()+1)),
+         np2= board->getSign((pacMan->getLocationX()  ),(pacMan->getLocationY()+2)),
+         p1m2=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()-2)),
+         p1m1=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()-1)),
+         p1n= board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()  )),
+         p1p1=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()+1)),
+         p1p2=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()+2)),
+         p2m1=board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()-1)),
+         p2n= board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()  )),
+         p2p1=board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()+1));
+
     //0
-    if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    if ((m1n==horizontal)&&(p1n==horizontal)&&(nm1=vertical)&&(np1==vertical))
     {
-        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
-        {
-            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
-            {
-                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
-                {
-                    return 1;
-                }
-            }
-        }
+        return 1;
     }
     //1
-    else if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    else if ( (m1n==horizontal)&&(p2n==horizontal)&&(nm1==vertical)&&(np1==vertical)&&(p1p1==vertical)&&(p1m1==vertical) )
     {
-        if ((board->getSign((pacMan->getLocationX()+2),pacMan->getLocationY()))==horizontal)
-        {
-            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
-            {
-                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
-                {
-                    if (board->getSign(pacMan->getLocationX()+1,(pacMan->getLocationY()+1))==vertical)
-                    {
-                        if(board->getSign(pacMan->getLocationX()+1,(pacMan->getLocationY()-1))==vertical)
-                        {
-                            return 1;
-                        }
-                    }
-                }
-            }
-        }
+        return 1;
     }
 
-     //2
-    else if ((board->getSign((pacMan->getLocationX()-2),pacMan->getLocationY()))==horizontal)
+    //2
+    else if ( (m2n==horizontal)&&(p1n==horizontal)&&(np1==vertical)&&(nm1==vertical)&&(m1p1==vertical)&&(m1m1==vertical) )
     {
-        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
-        {
-            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
-            {
-                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
-                {
-                    if(board->getSign(pacMan->getLocationX()-1,(pacMan->getLocationY()+1))==vertical)
-                    {
-                        if(board->getSign(pacMan->getLocationX()-1,(pacMan->getLocationY()-1))==vertical)
-                        {
-                                 return 1;
-                        }
-                    }
-                }
-            }
-        }
+        return 1;
     }
 
-     //3
-    else if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    //3
+    else if ( (nm1==vertical)&&(np2==vertical)&&(p1n==horizontal)&&(p1p1==horizontal)&&(m1n==horizontal)&&(m1p1==horizontal) )
     {
-        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
-        {
-            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
-            {
-                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+2))==vertical)
-                {
-                    if(board->getSign(pacMan->getLocationX()+1,(pacMan->getLocationY()+1))==horizontal)
-                    {
-                        if(board->getSign(pacMan->getLocationX()-1,(pacMan->getLocationY()+1))==horizontal)
-                        {
-                           return 1;
-                        }
-                    }
-                }
-            }
-        }
+        return 1;
     }
 
-     //4
-    else if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    //4
+    else if ( (np1==vertical)&&(nm2==vertical)&&(p1m1==horizontal)&&(p1n==horizontal)&&(m1m1==horizontal)&&(m1n==horizontal) )
     {
-        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
-        {
-            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-2))==vertical)
-            {
-                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
-                {
-                    if((board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()-1)))==horizontal)
-                    {
-                        if((board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-1)))==horizontal)
-                        {
-                           return 1;
-                        }
-                    }
-                }
-            }
-        }
+        return 1;
     }
 
-      //5
-    else if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    //5
+    else if ( (m1n==horizontal)&&(m1p1==horizontal)&&(p2n==horizontal)&&(p2p1==horizontal)
+              &&(nm1==vertical)&&(p1m1==vertical)&&(np2==vertical)&&(p1p2==vertical) )
     {
-        if ((board->getSign((pacMan->getLocationX()+2),pacMan->getLocationY()))==horizontal)
-        {
-            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
-            {
-                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+2))==vertical)
-                {
-                    if(board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()+1))==horizontal)
-                    {
-                        if(board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()+1))==horizontal)
-                        {
-                            if(board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()-1))==vertical)
-                            {
-                                if(board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()+2))==vertical)
-                                {
-                                   return 1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        return 1;
     }
 
-     //6
-    else if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    //6
+    else if ( (m1m1==horizontal)&&(m1n==horizontal)&&(p2n==horizontal)&&(p2m1==horizontal)
+              &&(nm2==vertical)&&(np1==vertical)&&(p1m2==vertical)&&(p1p1==vertical) )
     {
-        if ((board->getSign((pacMan->getLocationX()+2),pacMan->getLocationY()))==horizontal)
-        {
-            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-2))==vertical)
-            {
-                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
-                {
-                    if(board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-1))==horizontal)
-                    {
-                        if(board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()-1))==horizontal)
-                        {
-                            if(board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()-2))==vertical)
-                            {
-                                if(board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()+1))==vertical)
-                                {
-                                     return 1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        return 1;
     }
 
-     //7
-    else if ((board->getSign((pacMan->getLocationX()-2),pacMan->getLocationY()))==horizontal)
+    //7
+    else if ( (m2n==horizontal)&&(m2p1==horizontal)&&(p1n==horizontal)&&(p1p1==horizontal)
+              &&(m1m1==vertical)&&(nm1==vertical)&&(m1p2==vertical)&&(np2==vertical) )
     {
-        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
-        {
-            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
-            {
-                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+2))==vertical)
-                {
-                    if(board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()+1))==horizontal)
-                    {
-                        if(board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()+1))==horizontal)
-                        {
-                            if(board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-1))==vertical)
-                            {
-                                if(board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()+2))==vertical)
-                                {
-                                   return 1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        return 1;
     }
 
     //8
-    else if ((board->getSign((pacMan->getLocationX()-2),pacMan->getLocationY()))==horizontal)
+    else if ( (m2m1==horizontal)&&(m2n==horizontal)&&(p1m1==horizontal)&&(p1n==horizontal)
+              &&(m1m2==vertical)&&(nm2==vertical)&&(m1p1==vertical)&&(np1==vertical) )
     {
-        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
-        {
-            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-2))==vertical)
-            {
-                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
-                {
-                    if(board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()-1))==horizontal)
-                    {
-                        if(board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()-1))==horizontal)
-                        {
-                            if(board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-2))==vertical)
-                            {
-                                if(board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()+1))==vertical)
-                                {
-                                   return 1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        return 1;
     }
 
-    else return 0;
+
+
+    else
+        return 0;
 }
