@@ -39,7 +39,7 @@ clock_t start;
 
 int main()
 {
-    Board testBoard(17);
+   /* Board testBoard(17);
     testBoard.setPosition(1,5,horizontal);
     testBoard.setPosition(1,6,horizontal);
     //testBoard.setPosition(1,8,vertical);
@@ -60,7 +60,7 @@ int main()
     testBoard.setPosition(11,2,horizontal);
     testBoard.setPosition(11,3,horizontal);
 
-    //testBoard.showBoard();
+    //testBoard.showBoard();*/
     while(1)
     {
         breakTheLoop=1;
@@ -99,7 +99,6 @@ int main()
             getch();
             system("cls");
             Board firstBoard(boardSize);
-            firstBoard=testBoard;
             firstBoard.originalSign1=firstBoard.getSign(1,1);
             PacMan pacMan(257, pacManName1, 1, 1);
             Berry berry(&firstBoard);
@@ -390,7 +389,7 @@ void gameOver(Board *board, PacMan *pacMan)
     if (unplayablePositionOfPacMan(board, pacMan))
     {
         breakTheLoop=0;
-       // board->gameOver();
+        board->gameOver();
     }
 }
 
@@ -472,33 +471,33 @@ void showMenu()
 
 bool unplayablePositionOfPacMan(Board *board, PacMan *pacMan)
 {
-    char m2m1=board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()-1)),
+    char //m2m1=board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()-1)),
          m2n= board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()  )),
-         m2p1=board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()+1)),
-         m1m2=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-2)),
-         m1m1=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-1)),
+         //m2p1=board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()+1)),
+         //m1m2=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-2)),
+         //m1m1=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-1)),
          m1n= board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()  )),
-         m1p1=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()+1)),
-         m1p2=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()+2)),
+         //m1p1=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()+1)),
+         //m1p2=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()+2)),
          nm2= board->getSign((pacMan->getLocationX()  ),(pacMan->getLocationY()-2)),
          nm1= board->getSign((pacMan->getLocationX()  ),(pacMan->getLocationY()-1)),
          np1= board->getSign((pacMan->getLocationX()  ),(pacMan->getLocationY()+1)),
          np2= board->getSign((pacMan->getLocationX()  ),(pacMan->getLocationY()+2)),
-         p1m2=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()-2)),
-         p1m1=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()-1)),
+         //p1m2=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()-2)),
+         //p1m1=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()-1)),
          p1n= board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()  )),
-         p1p1=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()+1)),
-         p1p2=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()+2)),
-         p2m1=board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()-1)),
-         p2n= board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()  )),
-         p2p1=board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()+1));
+         //p1p1=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()+1)),
+         //p1p2=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()+2)),
+         //p2m1=board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()-1)),
+         p2n= board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()  ));
+         //p2p1=board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()+1));
 
     //0
-    if ((m1n==horizontal)&&(p1n==horizontal)&&(nm1=vertical)&&(np1==vertical))
+    if ((m1n==horizontal)&&(p1n==horizontal)&&(nm1==vertical)&&(np1==vertical))
     {
         return 1;
     }
-    //1
+   /* //1
     else if ( (m1n==horizontal)&&(p2n==horizontal)&&(nm1==vertical)&&(np1==vertical)&&(p1p1==vertical)&&(p1m1==vertical) )
     {
         return 1;
@@ -551,7 +550,7 @@ bool unplayablePositionOfPacMan(Board *board, PacMan *pacMan)
     }
 
 
-
+*/
     else
         return 0;
 }

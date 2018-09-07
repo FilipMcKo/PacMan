@@ -88,7 +88,7 @@ char Board::getSign(int positionX, int positionY)
 {
     if((positionX>=0)&&(positionY>=0))
     return matrix[positionX][positionY];
-    else return '0';
+    else return 206;
 }
 
 void Board::gameOver()

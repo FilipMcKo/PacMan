@@ -229,36 +229,36 @@
 	"PacMan.h"
 	<iostream>
 
-1536005199 source:c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\src\berry.cpp
+1536266310 source:c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\src\berry.cpp
 	"Berry.h"
 	"Board.h"
 	<iostream>
 	<ctime>
 	<cstdlib>
 
-1536005199 c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\include\berry.h
+1536266310 c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\include\berry.h
 	<iostream>
 	"Board.h"
 
-1536005199 c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\include\board.h
+1536266310 c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\include\board.h
 	<iostream>
 
-1536005199 source:c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\src\board.cpp
+1536266310 source:c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\src\board.cpp
 	"Board.h"
 	<iostream>
 	<cstdlib>
 	<ctime>
 	<windows.h>
 
-1536005199 source:c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\src\pacman.cpp
+1536266310 source:c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\src\pacman.cpp
 	"PacMan.h"
 	<iostream>
 
-1536005199 c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\include\pacman.h
+1536266310 c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\include\pacman.h
 	<iostream>
 	"Board.h"
 
-1536236394 source:c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\main.cpp
+1536307156 source:c:\codeblocks\wypociny\pacman-pacman-v1.4\pacman\main.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
