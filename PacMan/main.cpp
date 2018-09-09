@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <conio.h>
 #include <windows.h>
+#include <fstream> //highscore file
+#include <vector>
 #include "Board.h"
 #include "PacMan.h"
 #include "Berry.h"
@@ -27,17 +29,52 @@ void startPosition();
 void gameOver(Board *, PacMan *);
 void eatBerry(Board *, PacMan *, Berry *);
 void showMenu();
+void saveTheScore(string, int);
+void updateHighScore();
+void showHighScore();
+bool unplayablePositionOfPacMan(Board *, PacMan*);
 
-const int boardSize=18;
-int movementDirection1=0, menu1=33, menu2=7, menu3=7, menu4=7, menuInc=0, menuConfirm=1, menuScroll=0;
+const int boardSize=15;
+int movementDirection1=0, menu1=33, menu2=7, menu3=7, menu4=7, menuInc=0, menuConfirm=1, menuScroll=0, nrOfScores=0;
 const char horizontal=205, vertical=186, w=119, s=115, a=97, d=100;
 char playAgainChoice, movementDirection2=0;
 bool breakTheLoop=1, playAgain=1;
 string pacManName1, pacManName2;
 clock_t start;
+struct PersonResult
+{
+    string nameOfPerson;
+    int scoreOfPerson;
+};
+
+vector <PersonResult> peopleAndScores;
+vector <PersonResult> vectorSorter(vector <PersonResult>);
 
 int main()
 {
+    /* Board testBoard(17);
+     testBoard.setPosition(1,5,horizontal);
+     testBoard.setPosition(1,6,horizontal);
+     //testBoard.setPosition(1,8,vertical);
+     //testBoard.setPosition(1,10,horizontal);
+     testBoard.setPosition(2,4,vertical);
+     testBoard.setPosition(2,7,vertical);
+     //testBoard.setPosition(2,8,vertical);
+     //testBoard.setPosition(2,10,vertical);
+     testBoard.setPosition(3,4,vertical);
+     testBoard.setPosition(3,7,vertical);
+     //testBoard.setPosition(3,9,horizontal);
+     testBoard.setPosition(4,5,horizontal);
+     testBoard.setPosition(4,6,horizontal);
+     testBoard.setPosition(9,2,horizontal);
+     testBoard.setPosition(9,3,horizontal);
+     testBoard.setPosition(10,1,vertical);
+     testBoard.setPosition(10,4,vertical);
+     testBoard.setPosition(11,2,horizontal);
+     testBoard.setPosition(11,3,horizontal);
+
+     //testBoard.showBoard();*/
+    updateHighScore();
     while(1)
     {
         breakTheLoop=1;
@@ -104,7 +141,16 @@ int main()
                     {
                         cout<<"You are out of time!\n";
                         cout<<"Your score is: "<<pacMan.getEatenBerries()<<endl<<endl;
-                        Sleep(3000);
+                        saveTheScore(pacMan.getPacManName(), pacMan.getEatenBerries());
+                        updateHighScore();
+                        Sleep(100);
+                    }
+
+                    else if(breakTheLoop==0)
+                    {
+                        cout<<"You entered a no way out area."<<endl;
+                        saveTheScore(pacMan.getPacManName(), pacMan.getEatenBerries());
+                        updateHighScore();
                     }
                 }
 
@@ -117,6 +163,10 @@ int main()
                         system("cls");
                         pacMan.resetPacMan();
                         firstBoard.resetTheBoard();
+                        while(unplayablePositionOfPacMan(&firstBoard, &pacMan))
+                        {
+                            firstBoard.resetTheBoard();
+                        }
                         berry.setPosition(&firstBoard);
                         breakTheLoop=1;
                         break;
@@ -183,8 +233,9 @@ int main()
 
                     movementDirection1=getch();
                     if (movementDirection1==KEY_UP||movementDirection1==KEY_DOWN||movementDirection1==KEY_LEFT||movementDirection1==KEY_RIGHT)
-                    firstPlayer(movementDirection1, &pacMan1, &firstBoard, &berry);
-                    else secondPlayer(movementDirection1, &pacMan2, &firstBoard, &berry);
+                        firstPlayer(movementDirection1, &pacMan1, &firstBoard, &berry);
+                    else
+                        secondPlayer(movementDirection1, &pacMan2, &firstBoard, &berry);
 
 
                     system("cls");
@@ -210,6 +261,12 @@ int main()
                         system("cls");
                         pacMan1.resetPacMan();
                         pacMan2.resetPacMan();
+                        firstBoard.resetTheBoard();
+                        while(unplayablePositionOfPacMan(&firstBoard, &pacMan1)&&unplayablePositionOfPacMan(&firstBoard, &pacMan1))
+                        {
+                            firstBoard.resetTheBoard();
+                        }
+
                         firstBoard.resetTheBoard();
                         berry.setPosition(&firstBoard);
                         breakTheLoop=1;
@@ -241,7 +298,7 @@ int main()
 
         case 2:
             system("cls");
-            cout<<"Multiplayer\n";
+            showHighScore();
             getch();
             break;
         case 3:
@@ -302,6 +359,7 @@ void firstPlayer(int whatArrow, PacMan *pacMan, Board *board, Berry *berry)
 
 void secondPlayer(int whatLetter, PacMan *pacMan, Board *board, Berry *berry)
 {
+    gameOver(board, pacMan);
 
     pacMan->setPreviousPosition(pacMan->getLocationX(),pacMan->getLocationY());
 
@@ -349,19 +407,10 @@ void secondPlayer(int whatLetter, PacMan *pacMan, Board *board, Berry *berry)
 
 void gameOver(Board *board, PacMan *pacMan)
 {
-    if ((board->getSign((pacMan->getLocationX()-1),pacMan->getLocationY()))==horizontal)
+    if (unplayablePositionOfPacMan(board, pacMan))
     {
-        if ((board->getSign((pacMan->getLocationX()+1),pacMan->getLocationY()))==horizontal)
-        {
-            if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()-1))==vertical)
-            {
-                if (board->getSign(pacMan->getLocationX(),(pacMan->getLocationY()+1))==vertical)
-                {
-                    board->gameOver();
-                    breakTheLoop=0;
-                }
-            }
-        }
+        breakTheLoop=0;
+        board->gameOver();
     }
 }
 
@@ -440,3 +489,193 @@ void showMenu()
 
 }
 
+
+bool unplayablePositionOfPacMan(Board *board, PacMan *pacMan)
+{
+    //a moze tu jest taki blad, ze te zmienne tymczasowe m2n itd nie sa na biezaca kasowane tak jak powinny byc
+    // i mam ten stack overflow o ktorym mowil michal i moze powiny to byc zmienne globalne, ktorym tutj przypisywane
+    //sa po prostu kolejno noewe wartosci!!! worth a try
+
+    char //m2m1=board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()-1)),
+    m2n= board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()  )),
+    //m2p1=board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()+1)),
+    //m1m2=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-2)),
+    //m1m1=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-1)),
+    m1n= board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()  )),
+    //m1p1=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()+1)),
+    //m1p2=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()+2)),
+    //nm2= board->getSign((pacMan->getLocationX()  ),(pacMan->getLocationY()-2)),
+    nm1= board->getSign((pacMan->getLocationX()  ),(pacMan->getLocationY()-1)),
+    np1= board->getSign((pacMan->getLocationX()  ),(pacMan->getLocationY()+1)),
+    //np2= board->getSign((pacMan->getLocationX()  ),(pacMan->getLocationY()+2)),
+    //p1m2=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()-2)),
+    //p1m1=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()-1)),
+    p1n= board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()  ));
+    //p1p1=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()+1)),
+    //p1p2=board->getSign((pacMan->getLocationX()+1),(pacMan->getLocationY()+2)),
+    //p2m1=board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()-1)),
+    //p2n= board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()  ));
+    //p2p1=board->getSign((pacMan->getLocationX()+2),(pacMan->getLocationY()+1));
+
+    //0
+    if ((m1n==horizontal)&&(p1n==horizontal)&&(nm1==vertical)&&(np1==vertical))
+    {
+        return 1;
+    }
+    /* //1
+     else if ( (m1n==horizontal)&&(p2n==horizontal)&&(nm1==vertical)&&(np1==vertical)&&(p1p1==vertical)&&(p1m1==vertical) )
+     {
+         return 1;
+     }
+
+     //2
+     else if ( (m2n==horizontal)&&(p1n==horizontal)&&(np1==vertical)&&(nm1==vertical)&&(m1p1==vertical)&&(m1m1==vertical) )
+     {
+         return 1;
+     }
+
+     //3
+     else if ( (nm1==vertical)&&(np2==vertical)&&(p1n==horizontal)&&(p1p1==horizontal)&&(m1n==horizontal)&&(m1p1==horizontal) )
+     {
+         return 1;
+     }
+
+     //4
+     else if ( (np1==vertical)&&(nm2==vertical)&&(p1m1==horizontal)&&(p1n==horizontal)&&(m1m1==horizontal)&&(m1n==horizontal) )
+     {
+         return 1;
+     }
+
+     //5
+     else if ( (m1n==horizontal)&&(m1p1==horizontal)&&(p2n==horizontal)&&(p2p1==horizontal)
+               &&(nm1==vertical)&&(p1m1==vertical)&&(np2==vertical)&&(p1p2==vertical) )
+     {
+         return 1;
+     }
+
+     //6
+     else if ( (m1m1==horizontal)&&(m1n==horizontal)&&(p2n==horizontal)&&(p2m1==horizontal)
+               &&(nm2==vertical)&&(np1==vertical)&&(p1m2==vertical)&&(p1p1==vertical) )
+     {
+         return 1;
+     }
+
+     //7
+     else if ( (m2n==horizontal)&&(m2p1==horizontal)&&(p1n==horizontal)&&(p1p1==horizontal)
+               &&(m1m1==vertical)&&(nm1==vertical)&&(m1p2==vertical)&&(np2==vertical) )
+     {
+         return 1;
+     }
+
+     //8
+     else if ( (m2m1==horizontal)&&(m2n==horizontal)&&(p1m1==horizontal)&&(p1n==horizontal)
+               &&(m1m2==vertical)&&(nm2==vertical)&&(m1p1==vertical)&&(np1==vertical) )
+     {
+         return 1;
+     }
+
+
+    */
+    else
+        return 0;
+}
+
+
+void saveTheScore(string nickName, int score)
+{
+    ofstream highScore;
+    highScore.open("highScore.txt", ios::out | ios::ate | ios::in); //flags set to add things at the end
+
+    if (highScore.is_open())
+    {
+        highScore<<nickName<<endl;
+        highScore<<score<<endl;
+        highScore.close();
+    }
+
+    else
+        cout<<"Error occurred!"<<endl;
+}
+
+
+void updateHighScore()
+{
+    nrOfScores=0;
+    string tempValue;
+    ifstream highScore;
+    highScore.open("highScore.txt");  //default flag is ios::in
+
+    if (highScore.is_open())
+    {
+        while(!highScore.eof())
+        {
+            PersonResult tempPerson;
+            highScore>>tempPerson.nameOfPerson;
+            highScore>>tempPerson.scoreOfPerson;
+            peopleAndScores.push_back(tempPerson);
+            nrOfScores++;
+        }
+        highScore.close();
+
+    }
+
+    else
+        cout<<"There is no high score yet."<<endl;
+}
+
+void showHighScore()
+{
+    peopleAndScores=vectorSorter(peopleAndScores);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
+    cout<<"\nTHE TOP 10 PLAYERS\n\n";
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+    if (peopleAndScores.size()>10)
+    {
+        for (int i=0; i<10; i++)
+        {
+            cout.setf(ios::left);
+            cout.width(4);
+            cout<<i+1;
+            cout.setf(ios::left);
+            cout.width(9);
+            cout<<peopleAndScores[i].nameOfPerson<<"    ";
+            cout<<peopleAndScores[i].scoreOfPerson<<endl;
+        }
+    }
+
+    else
+    {
+        for (int i=0; i<peopleAndScores.size(); i++)
+        {
+            cout.setf(ios::left);
+            cout.width(4);
+            cout<<i+1;
+            cout.setf(ios::left);
+            cout.width(9);
+            cout<<peopleAndScores[i].nameOfPerson<<"    ";
+            cout<<peopleAndScores[i].scoreOfPerson<<endl;
+        }
+    }
+}
+
+
+vector <PersonResult> vectorSorter(vector <PersonResult> peoplesAndScores)
+{
+    PersonResult tempPerson;
+
+    for (int j=0; j<peoplesAndScores.size()-1; j++)
+    {
+        for (int i=0; i<peoplesAndScores.size()-1; i++)
+        {
+            if (peoplesAndScores[i+1].scoreOfPerson>peoplesAndScores[i].scoreOfPerson)
+            {
+                tempPerson=peoplesAndScores[i];
+                peoplesAndScores[i]=peoplesAndScores[i+1];
+                peoplesAndScores[i+1]=tempPerson;
+            }
+        }
+
+    }
+
+      return peoplesAndScores;
+}
