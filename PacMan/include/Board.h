@@ -11,7 +11,10 @@ class Board
 {
     int boardSize, positionX, positionY;
     char **matrix;
-    char berryInstance=271, pacmanInstance1=257,pacmanInstance2=258;
+    char berryInstance=271,
+    pacmanInstance1=257,
+    pacmanInstance2=258;
+
     short random;
     public:
         char originalSign1;

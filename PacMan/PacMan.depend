@@ -351,3 +351,45 @@
 	"PacMan.h"
 	<iostream>
 
+1536615358 source:f:\fifi\programowanie\pacman\pacman\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<cstdlib>
+	<conio.h>
+	<windows.h>
+	<fstream>
+	<vector>
+	"Board.h"
+	"PacMan.h"
+	"Berry.h"
+
+1536615386 f:\fifi\programowanie\pacman\pacman\include\board.h
+	<iostream>
+
+1536581898 f:\fifi\programowanie\pacman\pacman\include\pacman.h
+	<iostream>
+	"Board.h"
+
+1536581898 f:\fifi\programowanie\pacman\pacman\include\berry.h
+	<iostream>
+	"Board.h"
+
+1536581898 source:f:\fifi\programowanie\pacman\pacman\src\berry.cpp
+	"Berry.h"
+	"Board.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
+
+1536581898 source:f:\fifi\programowanie\pacman\pacman\src\board.cpp
+	"Board.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<windows.h>
+
+1536614626 source:f:\fifi\programowanie\pacman\pacman\src\pacman.cpp
+	"PacMan.h"
+	<iostream>
+

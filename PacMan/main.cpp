@@ -35,7 +35,7 @@ void showHighScore();
 bool unplayablePositionOfPacMan(Board *, PacMan*);
 
 const int boardSize=15;
-int movementDirection1=0, menu1=33, menu2=7, menu3=7, menu4=7, menuInc=0, menuConfirm=1, menuScroll=0, nrOfScores=0;
+int movementDirection1=0, menu1=33, menu2=7, menu3=7, menu4=7, menuInc=0, menuConfirm=1, menuScroll=0;
 const char horizontal=205, vertical=186, w=119, s=115, a=97, d=100;
 char playAgainChoice, movementDirection2=0;
 bool breakTheLoop=1, playAgain=1;
@@ -497,7 +497,7 @@ bool unplayablePositionOfPacMan(Board *board, PacMan *pacMan)
     //sa po prostu kolejno noewe wartosci!!! worth a try
 
     char //m2m1=board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()-1)),
-    m2n= board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()  )),
+    //m2n= board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()  )),
     //m2p1=board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()+1)),
     //m1m2=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-2)),
     //m1m1=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-1)),
@@ -600,7 +600,6 @@ void saveTheScore(string nickName, int score)
 
 void updateHighScore()
 {
-    nrOfScores=0;
     string tempValue;
     ifstream highScore;
     highScore.open("highScore.txt");  //default flag is ios::in
@@ -613,7 +612,6 @@ void updateHighScore()
             highScore>>tempPerson.nameOfPerson;
             highScore>>tempPerson.scoreOfPerson;
             peopleAndScores.push_back(tempPerson);
-            nrOfScores++;
         }
         highScore.close();
 
@@ -645,7 +643,7 @@ void showHighScore()
 
     else
     {
-        for (int i=0; i<peopleAndScores.size(); i++)
+        for (int i=0; i<peopleAndScores.size()-1; i++)
         {
             cout.setf(ios::left);
             cout.width(4);
