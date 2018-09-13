@@ -20,26 +20,34 @@
 1535490569 f:\fifi\programowanie\pacman\include\board.h
 	<iostream>
 
-1534924382 source:c:\codeblocks\wypociny\pacman\main.cpp
+1536848042 source:c:\codeblocks\wypociny\pacman\main.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
+	<cstdlib>
+	<conio.h>
+	<windows.h>
+	<fstream>
+	<vector>
 	"Board.h"
+	"PacMan.h"
+	"Berry.h"
 
-1534926278 c:\codeblocks\wypociny\pacman\include\board.h
+1536845758 c:\codeblocks\wypociny\pacman\include\board.h
 	<iostream>
 
-1534924382 source:c:\codeblocks\wypociny\pacman\src\board.cpp
+1536846127 source:c:\codeblocks\wypociny\pacman\src\board.cpp
 	"Board.h"
 	<iostream>
 	<cstdlib>
 	<ctime>
+	<windows.h>
 
-1534926948 source:c:\codeblocks\wypociny\pacman\src\pacman.cpp
+1536846680 source:c:\codeblocks\wypociny\pacman\src\pacman.cpp
 	"PacMan.h"
 	<iostream>
 
-1534926696 c:\codeblocks\wypociny\pacman\include\pacman.h
+1536844925 c:\codeblocks\wypociny\pacman\include\pacman.h
 	<iostream>
 	"Board.h"
 
@@ -392,4 +400,15 @@
 1536614626 source:f:\fifi\programowanie\pacman\pacman\src\pacman.cpp
 	"PacMan.h"
 	<iostream>
+
+1536844925 c:\codeblocks\wypociny\pacman\include\berry.h
+	<iostream>
+	"Board.h"
+
+1536844926 source:c:\codeblocks\wypociny\pacman\src\berry.cpp
+	"Berry.h"
+	"Board.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
 

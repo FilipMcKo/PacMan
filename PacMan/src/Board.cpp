@@ -46,6 +46,9 @@ Board::Board(int boardSize)
     matrix[boardSize-1][0]=200;
     matrix[boardSize-1][boardSize-1]=188;
 
+    this->totalTime=8;
+    this->remainingTime=1;
+
 }
 
 void Board::showBoard()
@@ -153,6 +156,9 @@ char Board::getSign(int positionX, int positionY)
         matrix[0][boardSize-1]=187;
         matrix[boardSize-1][0]=200;
         matrix[boardSize-1][boardSize-1]=188;
+
+        this->totalTime=8;
+        this->remainingTime=1;
     }
 
     Board::~Board()

@@ -11,8 +11,6 @@ PacMan::PacMan(int pacManInstance, string pacManName, int locationX, int locatio
     this->locationY=locationY;
     this->eatenBerries=0;
     this->pacManInstance=pacManInstance;
-    this->totalTime=8;
-    this->remainingTime=1;
     this->pacManName=pacManName;
 }
 
@@ -32,6 +30,7 @@ void PacMan::moveLeft()
 {
     this->locationY--;
 }
+
 void PacMan::eatBerry()
 {
     this->eatenBerries++;
@@ -72,14 +71,12 @@ int PacMan::getPreviousPositionY()
     return this->previousPositionY;
 }
 
-void PacMan::resetPacMan()
+void PacMan::resetPacMan(int locationX, int locationY, char pacManInstance)
 {
-    this->locationX=1;
-    this->locationY=1;
+    this->locationX=locationX;
+    this->locationY=locationY;
     this->eatenBerries=0;
-    this->pacManInstance=257;
-    this->totalTime=8;
-    this->remainingTime=1;
+    this->pacManInstance=pacManInstance;
 }
 
 string PacMan::getPacManName()

@@ -17,6 +17,7 @@ class Board
 
     short random;
     public:
+        int totalTime, remainingTime;
         char originalSign1;
         char originalSign2;
         char originalSignUnderBerry;

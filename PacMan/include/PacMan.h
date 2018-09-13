@@ -21,7 +21,7 @@ class PacMan
         void moveLeft();
         void eatBerry();
         void resetBerryCount();
-        void resetPacMan();
+        void resetPacMan(int, int, char);
         void setPreviousPosition(int, int);
         int getEatenBerries();
         int getLocationX();

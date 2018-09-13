@@ -123,13 +123,13 @@ int main()
             {
                 start=clock();
                 firstBoard.showBoard();
-                while(breakTheLoop&&(pacMan.remainingTime>0))
+                while(breakTheLoop&&(firstBoard.remainingTime>0))
                 {
-                    pacMan.remainingTime=pacMan.totalTime-(clock()-start)/CLOCKS_PER_SEC;
+                    firstBoard.remainingTime=firstBoard.totalTime-(clock()-start)/CLOCKS_PER_SEC;
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
                     cout<<"Eaten berries:  "<<pacMan.getEatenBerries()<<endl;
-                    if (pacMan.remainingTime>0)
-                        cout<<"Remaining time: "<<pacMan.remainingTime;
+                    if (firstBoard.remainingTime>0)
+                        cout<<"Remaining time: "<<firstBoard.remainingTime;
                     else
                         cout<<"Remaining time: 0";
 
@@ -137,7 +137,7 @@ int main()
                     firstPlayer(movementDirection1, &pacMan, &firstBoard, &berry);
                     system("cls");
                     firstBoard.showBoard();
-                    if (pacMan.remainingTime==0)
+                    if (firstBoard.remainingTime==0)
                     {
                         cout<<"You are out of time!\n";
                         cout<<"Your score is: "<<pacMan.getEatenBerries()<<endl<<endl;
@@ -161,7 +161,7 @@ int main()
                     if (playAgainChoice=='y'||playAgainChoice=='Y')
                     {
                         system("cls");
-                        pacMan.resetPacMan();
+                        pacMan.resetPacMan(1,1,257);
                         firstBoard.resetTheBoard();
                         while(unplayablePositionOfPacMan(&firstBoard, &pacMan))
                         {
@@ -180,7 +180,7 @@ int main()
                     {
                         system("cls");
                         firstBoard.showBoard();
-                        if (pacMan.remainingTime==0)
+                        if (firstBoard.remainingTime==0)
                         {
                             cout<<"You are out of time!\n";
                             cout<<"Your score is: "<<pacMan.getEatenBerries()<<endl<<endl;
@@ -214,9 +214,9 @@ int main()
             {
                 start=clock();
                 firstBoard.showBoard();
-                while(breakTheLoop&&(pacMan1.remainingTime>0))
+                while(breakTheLoop&&(firstBoard.remainingTime>0))
                 {
-                    pacMan1.remainingTime=pacMan1.totalTime-(clock()-start)/CLOCKS_PER_SEC;
+                    firstBoard.remainingTime=firstBoard.totalTime-(clock()-start)/CLOCKS_PER_SEC;
 
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
                     cout<<"Eaten berries:  "<<pacMan1.getEatenBerries()<<endl;
@@ -225,8 +225,8 @@ int main()
                     cout<<"Eaten berries:  "<<pacMan2.getEatenBerries()<<endl;
 
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
-                    if (pacMan1.remainingTime>0)
-                        cout<<"Remaining time: "<<pacMan1.remainingTime;
+                    if (firstBoard.remainingTime>0)
+                        cout<<"Remaining time: "<<firstBoard.remainingTime;
                     else
                         cout<<"Remaining time: 0";
 
@@ -240,7 +240,7 @@ int main()
 
                     system("cls");
                     firstBoard.showBoard();
-                    if (pacMan1.remainingTime==0)
+                    if (firstBoard.remainingTime==0)
                     {
                         cout<<"You are out of time!\n";
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
@@ -248,7 +248,7 @@ int main()
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
                         cout<<pacMan2.getPacManName()<<"'s score is: "<<pacMan2.getEatenBerries()<<endl;
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
-                        Sleep(3000);
+                        Sleep(1000);
                     }
                 }
 
@@ -259,8 +259,8 @@ int main()
                     if (playAgainChoice=='y'||playAgainChoice=='Y')
                     {
                         system("cls");
-                        pacMan1.resetPacMan();
-                        pacMan2.resetPacMan();
+                        pacMan1.resetPacMan(1, 1, 257);
+                        pacMan2.resetPacMan(boardSize-2, boardSize-2, 258);
                         firstBoard.resetTheBoard();
                         while(unplayablePositionOfPacMan(&firstBoard, &pacMan1)&&unplayablePositionOfPacMan(&firstBoard, &pacMan1))
                         {
@@ -281,7 +281,7 @@ int main()
                     {
                         system("cls");
                         firstBoard.showBoard();
-                        if (pacMan1.remainingTime==0)
+                        if (firstBoard.remainingTime==0)
                         {
                             cout<<"You are out of time!\n";
                             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
@@ -421,7 +421,7 @@ void eatBerry(Board *board, PacMan *pacMan, Berry *berry)
         pacMan->eatBerry();
         board->originalSign1=board->originalSignUnderBerry;
         berry->setPosition(board);
-        pacMan->totalTime+=3;
+        board->totalTime+=3;
     }
 }
 
