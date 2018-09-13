@@ -412,3 +412,45 @@
 	<ctime>
 	<cstdlib>
 
+1536821034 source:f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\src\berry.cpp
+	"Berry.h"
+	"Board.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
+
+1536821034 f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\include\berry.h
+	<iostream>
+	"Board.h"
+
+1536821034 f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\include\board.h
+	<iostream>
+
+1536821034 source:f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\src\board.cpp
+	"Board.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<windows.h>
+
+1536821034 source:f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\src\pacman.cpp
+	"PacMan.h"
+	<iostream>
+
+1536821034 f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\include\pacman.h
+	<iostream>
+	"Board.h"
+
+1536874043 source:f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<cstdlib>
+	<conio.h>
+	<windows.h>
+	<fstream>
+	<vector>
+	"Board.h"
+	"PacMan.h"
+	"Berry.h"
+

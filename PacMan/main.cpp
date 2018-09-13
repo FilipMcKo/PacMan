@@ -113,15 +113,17 @@ int main()
             getch();
             system("cls");
             Board firstBoard(boardSize);
-            firstBoard.originalSign1=firstBoard.getSign(1,1);
+
             PacMan pacMan(257, pacManName1, 1, 1);
-            Berry berry(&firstBoard);
-            firstBoard.setPosition(pacMan.getLocationX(),pacMan.getLocationY(),pacMan.getPacManInstance());
+
 
 
             while(playAgain)
             {
                 start=clock();
+                firstBoard.originalSign1=firstBoard.getSign(1,1);
+                Berry berry(&firstBoard);
+                firstBoard.setPosition(pacMan.getLocationX(),pacMan.getLocationY(),pacMan.getPacManInstance());
                 firstBoard.showBoard();
                 while(breakTheLoop&&(firstBoard.remainingTime>0))
                 {
@@ -161,12 +163,12 @@ int main()
                     if (playAgainChoice=='y'||playAgainChoice=='Y')
                     {
                         system("cls");
-                        pacMan.resetPacMan(1,1,257);
                         firstBoard.resetTheBoard();
                         while(unplayablePositionOfPacMan(&firstBoard, &pacMan))
                         {
                             firstBoard.resetTheBoard();
                         }
+                        pacMan.resetPacMan(1,1,257);
                         berry.setPosition(&firstBoard);
                         breakTheLoop=1;
                         break;
@@ -202,17 +204,17 @@ int main()
             getch();
             system("cls");
             Board firstBoard(boardSize);
-            firstBoard.originalSign1=firstBoard.getSign(1,1);
-            firstBoard.originalSign2=firstBoard.getSign(boardSize-2,boardSize-2);
             PacMan pacMan1(257, pacManName1, 1, 1);
             PacMan pacMan2(258, pacManName2, boardSize-2,boardSize-2);
             Berry berry(&firstBoard);
-            firstBoard.setPosition(pacMan1.getLocationX(),pacMan1.getLocationY(),pacMan1.getPacManInstance());
-            firstBoard.setPosition(pacMan2.getLocationX(),pacMan2.getLocationY(),pacMan2.getPacManInstance());
 
             while(playAgain)
             {
                 start=clock();
+                firstBoard.originalSign1=firstBoard.getSign(1,1);
+                firstBoard.originalSign2=firstBoard.getSign(boardSize-2,boardSize-2);
+                firstBoard.setPosition(pacMan1.getLocationX(),pacMan1.getLocationY(),pacMan1.getPacManInstance());
+                firstBoard.setPosition(pacMan2.getLocationX(),pacMan2.getLocationY(),pacMan2.getPacManInstance());
                 firstBoard.showBoard();
                 while(breakTheLoop&&(firstBoard.remainingTime>0))
                 {
@@ -420,7 +422,7 @@ void eatBerry(Board *board, PacMan *pacMan, Berry *berry)
     {
         pacMan->eatBerry();
         board->originalSign1=board->originalSignUnderBerry;
-        berry->setPosition(board);
+         berry->setPosition(board);
         board->totalTime+=3;
     }
 }
