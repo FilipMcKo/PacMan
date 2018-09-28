@@ -35,7 +35,7 @@ void showHighScore();
 bool unplayablePositionOfPacMan(Board *, PacMan*);
 
 const int boardSize=15;
-int movementDirection1=0, menu1=33, menu2=7, menu3=7, menu4=7, menuInc=0, menuConfirm=1, menuScroll=0, nrOfScores=0;
+int movementDirection1=0, menu1=33, menu2=7, menu3=7, menu4=7, menuInc=0, menuConfirm=1, menuScroll=0;
 const char horizontal=205, vertical=186, w=119, s=115, a=97, d=100;
 char playAgainChoice, movementDirection2=0;
 bool breakTheLoop=1, playAgain=1;
@@ -113,23 +113,25 @@ int main()
             getch();
             system("cls");
             Board firstBoard(boardSize);
-            firstBoard.originalSign1=firstBoard.getSign(1,1);
+
             PacMan pacMan(257, pacManName1, 1, 1);
-            Berry berry(&firstBoard);
-            firstBoard.setPosition(pacMan.getLocationX(),pacMan.getLocationY(),pacMan.getPacManInstance());
+
 
 
             while(playAgain)
             {
                 start=clock();
+                firstBoard.originalSign1=firstBoard.getSign(1,1);
+                Berry berry(&firstBoard);
+                firstBoard.setPosition(pacMan.getLocationX(),pacMan.getLocationY(),pacMan.getPacManInstance());
                 firstBoard.showBoard();
-                while(breakTheLoop&&(pacMan.remainingTime>0))
+                while(breakTheLoop&&(firstBoard.remainingTime>0))
                 {
-                    pacMan.remainingTime=pacMan.totalTime-(clock()-start)/CLOCKS_PER_SEC;
+                    firstBoard.remainingTime=firstBoard.totalTime-(clock()-start)/CLOCKS_PER_SEC;
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
                     cout<<"Eaten berries:  "<<pacMan.getEatenBerries()<<endl;
-                    if (pacMan.remainingTime>0)
-                        cout<<"Remaining time: "<<pacMan.remainingTime;
+                    if (firstBoard.remainingTime>0)
+                        cout<<"Remaining time: "<<firstBoard.remainingTime;
                     else
                         cout<<"Remaining time: 0";
 
@@ -137,7 +139,7 @@ int main()
                     firstPlayer(movementDirection1, &pacMan, &firstBoard, &berry);
                     system("cls");
                     firstBoard.showBoard();
-                    if (pacMan.remainingTime==0)
+                    if (firstBoard.remainingTime==0)
                     {
                         cout<<"You are out of time!\n";
                         cout<<"Your score is: "<<pacMan.getEatenBerries()<<endl<<endl;
@@ -161,12 +163,12 @@ int main()
                     if (playAgainChoice=='y'||playAgainChoice=='Y')
                     {
                         system("cls");
-                        pacMan.resetPacMan();
                         firstBoard.resetTheBoard();
                         while(unplayablePositionOfPacMan(&firstBoard, &pacMan))
                         {
                             firstBoard.resetTheBoard();
                         }
+                        pacMan.resetPacMan(1,1,257);
                         berry.setPosition(&firstBoard);
                         breakTheLoop=1;
                         break;
@@ -180,7 +182,7 @@ int main()
                     {
                         system("cls");
                         firstBoard.showBoard();
-                        if (pacMan.remainingTime==0)
+                        if (firstBoard.remainingTime==0)
                         {
                             cout<<"You are out of time!\n";
                             cout<<"Your score is: "<<pacMan.getEatenBerries()<<endl<<endl;
@@ -202,21 +204,21 @@ int main()
             getch();
             system("cls");
             Board firstBoard(boardSize);
-            firstBoard.originalSign1=firstBoard.getSign(1,1);
-            firstBoard.originalSign2=firstBoard.getSign(boardSize-2,boardSize-2);
             PacMan pacMan1(257, pacManName1, 1, 1);
             PacMan pacMan2(258, pacManName2, boardSize-2,boardSize-2);
             Berry berry(&firstBoard);
-            firstBoard.setPosition(pacMan1.getLocationX(),pacMan1.getLocationY(),pacMan1.getPacManInstance());
-            firstBoard.setPosition(pacMan2.getLocationX(),pacMan2.getLocationY(),pacMan2.getPacManInstance());
 
             while(playAgain)
             {
                 start=clock();
+                firstBoard.originalSign1=firstBoard.getSign(1,1);
+                firstBoard.originalSign2=firstBoard.getSign(boardSize-2,boardSize-2);
+                firstBoard.setPosition(pacMan1.getLocationX(),pacMan1.getLocationY(),pacMan1.getPacManInstance());
+                firstBoard.setPosition(pacMan2.getLocationX(),pacMan2.getLocationY(),pacMan2.getPacManInstance());
                 firstBoard.showBoard();
-                while(breakTheLoop&&(pacMan1.remainingTime>0))
+                while(breakTheLoop&&(firstBoard.remainingTime>0))
                 {
-                    pacMan1.remainingTime=pacMan1.totalTime-(clock()-start)/CLOCKS_PER_SEC;
+                    firstBoard.remainingTime=firstBoard.totalTime-(clock()-start)/CLOCKS_PER_SEC;
 
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
                     cout<<"Eaten berries:  "<<pacMan1.getEatenBerries()<<endl;
@@ -225,8 +227,8 @@ int main()
                     cout<<"Eaten berries:  "<<pacMan2.getEatenBerries()<<endl;
 
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
-                    if (pacMan1.remainingTime>0)
-                        cout<<"Remaining time: "<<pacMan1.remainingTime;
+                    if (firstBoard.remainingTime>0)
+                        cout<<"Remaining time: "<<firstBoard.remainingTime;
                     else
                         cout<<"Remaining time: 0";
 
@@ -240,7 +242,7 @@ int main()
 
                     system("cls");
                     firstBoard.showBoard();
-                    if (pacMan1.remainingTime==0)
+                    if (firstBoard.remainingTime==0)
                     {
                         cout<<"You are out of time!\n";
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
@@ -248,7 +250,7 @@ int main()
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
                         cout<<pacMan2.getPacManName()<<"'s score is: "<<pacMan2.getEatenBerries()<<endl;
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
-                        Sleep(3000);
+                        Sleep(1000);
                     }
                 }
 
@@ -259,8 +261,8 @@ int main()
                     if (playAgainChoice=='y'||playAgainChoice=='Y')
                     {
                         system("cls");
-                        pacMan1.resetPacMan();
-                        pacMan2.resetPacMan();
+                        pacMan1.resetPacMan(1, 1, 257);
+                        pacMan2.resetPacMan(boardSize-2, boardSize-2, 258);
                         firstBoard.resetTheBoard();
                         while(unplayablePositionOfPacMan(&firstBoard, &pacMan1)&&unplayablePositionOfPacMan(&firstBoard, &pacMan1))
                         {
@@ -281,7 +283,7 @@ int main()
                     {
                         system("cls");
                         firstBoard.showBoard();
-                        if (pacMan1.remainingTime==0)
+                        if (firstBoard.remainingTime==0)
                         {
                             cout<<"You are out of time!\n";
                             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
@@ -420,8 +422,8 @@ void eatBerry(Board *board, PacMan *pacMan, Berry *berry)
     {
         pacMan->eatBerry();
         board->originalSign1=board->originalSignUnderBerry;
-        berry->setPosition(board);
-        pacMan->totalTime+=3;
+         berry->setPosition(board);
+        board->totalTime+=3;
     }
 }
 
@@ -497,7 +499,7 @@ bool unplayablePositionOfPacMan(Board *board, PacMan *pacMan)
     //sa po prostu kolejno noewe wartosci!!! worth a try
 
     char //m2m1=board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()-1)),
-    m2n= board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()  )),
+    //m2n= board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()  )),
     //m2p1=board->getSign((pacMan->getLocationX()-2),(pacMan->getLocationY()+1)),
     //m1m2=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-2)),
     //m1m1=board->getSign((pacMan->getLocationX()-1),(pacMan->getLocationY()-1)),
@@ -600,7 +602,6 @@ void saveTheScore(string nickName, int score)
 
 void updateHighScore()
 {
-    nrOfScores=0;
     string tempValue;
     ifstream highScore;
     highScore.open("highScore.txt");  //default flag is ios::in
@@ -613,7 +614,6 @@ void updateHighScore()
             highScore>>tempPerson.nameOfPerson;
             highScore>>tempPerson.scoreOfPerson;
             peopleAndScores.push_back(tempPerson);
-            nrOfScores++;
         }
         highScore.close();
 
@@ -645,7 +645,7 @@ void showHighScore()
 
     else
     {
-        for (int i=0; i<peopleAndScores.size(); i++)
+        for (int i=0; i<peopleAndScores.size()-1; i++)
         {
             cout.setf(ios::left);
             cout.width(4);

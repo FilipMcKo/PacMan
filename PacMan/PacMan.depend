@@ -20,26 +20,34 @@
 1535490569 f:\fifi\programowanie\pacman\include\board.h
 	<iostream>
 
-1534924382 source:c:\codeblocks\wypociny\pacman\main.cpp
+1536848042 source:c:\codeblocks\wypociny\pacman\main.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
+	<cstdlib>
+	<conio.h>
+	<windows.h>
+	<fstream>
+	<vector>
 	"Board.h"
+	"PacMan.h"
+	"Berry.h"
 
-1534926278 c:\codeblocks\wypociny\pacman\include\board.h
+1536845758 c:\codeblocks\wypociny\pacman\include\board.h
 	<iostream>
 
-1534924382 source:c:\codeblocks\wypociny\pacman\src\board.cpp
+1536846127 source:c:\codeblocks\wypociny\pacman\src\board.cpp
 	"Board.h"
 	<iostream>
 	<cstdlib>
 	<ctime>
+	<windows.h>
 
-1534926948 source:c:\codeblocks\wypociny\pacman\src\pacman.cpp
+1536846680 source:c:\codeblocks\wypociny\pacman\src\pacman.cpp
 	"PacMan.h"
 	<iostream>
 
-1534926696 c:\codeblocks\wypociny\pacman\include\pacman.h
+1536844925 c:\codeblocks\wypociny\pacman\include\pacman.h
 	<iostream>
 	"Board.h"
 
@@ -350,4 +358,141 @@
 1536396709 source:d:\programowanie\c++\pacman-pacman-v1.4\pacman-pacman-v1.4\pacman\src\pacman.cpp
 	"PacMan.h"
 	<iostream>
+
+1536615358 source:f:\fifi\programowanie\pacman\pacman\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<cstdlib>
+	<conio.h>
+	<windows.h>
+	<fstream>
+	<vector>
+	"Board.h"
+	"PacMan.h"
+	"Berry.h"
+
+1536615386 f:\fifi\programowanie\pacman\pacman\include\board.h
+	<iostream>
+
+1536581898 f:\fifi\programowanie\pacman\pacman\include\pacman.h
+	<iostream>
+	"Board.h"
+
+1536581898 f:\fifi\programowanie\pacman\pacman\include\berry.h
+	<iostream>
+	"Board.h"
+
+1536581898 source:f:\fifi\programowanie\pacman\pacman\src\berry.cpp
+	"Berry.h"
+	"Board.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
+
+1536581898 source:f:\fifi\programowanie\pacman\pacman\src\board.cpp
+	"Board.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<windows.h>
+
+1536614626 source:f:\fifi\programowanie\pacman\pacman\src\pacman.cpp
+	"PacMan.h"
+	<iostream>
+
+1536844925 c:\codeblocks\wypociny\pacman\include\berry.h
+	<iostream>
+	"Board.h"
+
+1536844926 source:c:\codeblocks\wypociny\pacman\src\berry.cpp
+	"Berry.h"
+	"Board.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
+
+1536821034 source:f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\src\berry.cpp
+	"Berry.h"
+	"Board.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
+
+1536821034 f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\include\berry.h
+	<iostream>
+	"Board.h"
+
+1536821034 f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\include\board.h
+	<iostream>
+
+1536821034 source:f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\src\board.cpp
+	"Board.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<windows.h>
+
+1536821034 source:f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\src\pacman.cpp
+	"PacMan.h"
+	<iostream>
+
+1536821034 f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\include\pacman.h
+	<iostream>
+	"Board.h"
+
+1536874043 source:f:\fifi\programowanie\pacman\pacman-pacman-v2.1\pacman\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<cstdlib>
+	<conio.h>
+	<windows.h>
+	<fstream>
+	<vector>
+	"Board.h"
+	"PacMan.h"
+	"Berry.h"
+
+1538162003 source:f:\fifi\programowanie\projects\pacman\pacman-pacman-v2.2\pacman\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<cstdlib>
+	<conio.h>
+	<windows.h>
+	<fstream>
+	<vector>
+	"Board.h"
+	"PacMan.h"
+	"Berry.h"
+
+1538154692 f:\fifi\programowanie\projects\pacman\pacman-pacman-v2.2\pacman\include\board.h
+	<iostream>
+
+1536843148 f:\fifi\programowanie\projects\pacman\pacman-pacman-v2.2\pacman\include\pacman.h
+	<iostream>
+	"Board.h"
+
+1536843148 f:\fifi\programowanie\projects\pacman\pacman-pacman-v2.2\pacman\include\berry.h
+	<iostream>
+	"Board.h"
+
+1536843148 source:f:\fifi\programowanie\projects\pacman\pacman-pacman-v2.2\pacman\src\berry.cpp
+	"Berry.h"
+	"Board.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
+
+1536843148 source:f:\fifi\programowanie\projects\pacman\pacman-pacman-v2.2\pacman\src\pacman.cpp
+	"PacMan.h"
+	<iostream>
+
+1538154753 source:f:\fifi\programowanie\projects\pacman\pacman-pacman-v2.2\pacman\src\board.cpp
+	"Board.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<windows.h>
 
